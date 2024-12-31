@@ -31,19 +31,23 @@ async def users(user: User):
 
 @app.put ('/user/{user_id}/{username}/{age}')
 async def update_task(user_id:int, user:User):
-    for i in users:
-        if i.id == user_id:
-            i.username = user.username
-            i.age = user.age
-            return f'The user {user_id}  is updated '
-    raise HTTPException(status_code=404, detail="User was not found")
+    try:
+        for i in users:
+            if i.id == user_id:
+                i.username = user.username
+                i.age = user.age
+                return f'The user {user_id}  is updated '
+    except IndexError:
+        raise HTTPException(status_code=404, detail="User was not found")
 
 
 @app.delete('/user/{user_id}')
 async def users(user_id:int):
-    for i, t in enumerate(users):
-        if t.id == user_id:
-            y = users[i]
-            del users[i]
-            return y
-    raise HTTPException(status_code=404, detail="User was not found")
+    try:
+        for i, t in enumerate(users):
+            if t.id == user_id:
+                y = users[i]
+                del users[i]
+                return y
+    except IndexError:
+        raise HTTPException(status_code=404, detail="User was not found")
