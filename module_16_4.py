@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Path
+from fastapi import FastAPI, Path, HTTPException
 from typing import Annotated
 from pydantic import BaseModel, Field
 # Создаем экземпляр приложения FastAPI
