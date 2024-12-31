@@ -35,4 +35,3 @@ async def update_task(user_id:int,username: Annotated[str, Path(min_length=5, ma
 @app.delete('/user/{user_id}')
 async def users(user_id:int):
     users.pop(f"{user_id}")
-    return f'Вы вошли как пользователь'
